@@ -13,3 +13,16 @@ body {
   font-size: 5em;
   width: 100%;
 }
+
+.ATC-active {
+  font-size: 5vmax;
+  color: whitesmoke;
+  padding: 0 9% 0 9%;
+}
+
+.ATC-toggle {
+  cursor: pointer;
+  user-select: none;
+} 
+
+.ATC-toggle input {display: none;}
