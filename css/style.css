@@ -31,13 +31,13 @@ body {
   animation-delay: 50ms;
   color: #f1f1f1;
   text-transform: uppercase;
+  font-size: 5vw;
 } 
 
 .ATC-select {
   cursor: pointer;
   user-select: none;
   display: inline-block;
-  font-size: 1.5rem;
 } 
 
 .ATC-toggle input {display: none;}
