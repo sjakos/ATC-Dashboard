@@ -1,14 +1,40 @@
 $(document).ready(function () {
-    $(".ATC-header").click(function() {
-        activateATC();
+
+    $(".ATC-select").click(function () {
+        activateATC($(this).text());
+    });
+
+    $(document).on("click", ".ATC-toggle", function() {
+        $(this).remove();
+    });
+
+    $("#deleteATC").click(function () {
+        deleteATC();
+    });
+
+    $("#createATC").click(function () {
+        createATC();
     });
 })
-var ATCname = "bob";
 
-function activateATC() {
+function activateATC(ATCname) {
     var $template = $("#defaultATC").clone();
-    $template.attr("id", ATCname)
-    .children(".ATC-toggle").text(ATCname)
-    .appendTo("#ATC-active-list")
-    .addClass("col text-center");
+    $template.children(".ATC-toggle")
+        .text(ATCname)
+        .appendTo("#ATC-active-list")
+        .addClass("col text-center");
+    $("#ATCmodal").modal('hide');
+}
+
+function createATC() {
+    switchModal("#ATCmodal","#ATCcreateModal");
+}
+
+function deleteATC() {
+    switchModal("#ATCmodal","#ATCdeleteModal");
+}
+
+function switchModal(hideModalID,showModalID) {
+        $(hideModalID).modal('hide');
+        $(showModalID).modal('show');
 }
