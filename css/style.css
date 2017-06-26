@@ -17,7 +17,6 @@ body {
 }
 
 #ATC-active-list {
-  font-size: 5vmax;
   color: whitesmoke;
   padding: 0 9% 0 9%;
 }
@@ -26,13 +25,19 @@ body {
   cursor: pointer;
   user-select: none;
   display: inline-block;
+  transition: all 350ms ease-in;
+  text-shadow: 0 0 .5px #656565, 0 0 .9px #000000, 0 0 2px #000000, 0 0 2.75px #101010;
+  animation: neon 1.66s ease-in-out infinite alternate;
+  animation-delay: 50ms;
+  color: #f1f1f1;
+  text-transform: uppercase;
 } 
 
 .ATC-select {
   cursor: pointer;
   user-select: none;
   display: inline-block;
-  font-size: 2vmax;
+  font-size: 1.5rem;
 } 
 
 .ATC-toggle input {display: none;}
@@ -44,37 +49,4 @@ body {
   100% {
     text-shadow: 0 0 .2px #fff, 0 0 .33px #fff, 0 0 .4px #fff, 0 0 8px #FF9900, 0 0 10px #FF9900, 0 0 12px #FF9900, 0 0 15px #FF9900;
   }
-}
-
-.ATC-neon {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.ATC-neon .ATC-btn {
-  margin: 0 .5em;
-  transition: all 350ms ease-in;
-  text-transform: uppercase;
-  font-size: 8em;
-  color: #7A7A7A;
-  text-shadow: 0 0 .5px #656565, 0 0 .9px #000000, 0 0 2px #000000, 0 0 2.75px #101010;
-}
-
-.ATC-neon .ATC-btn:hover {
-  cursor: pointer;
-}
-
-.ATC-neon .ATC-btn:after {
-  transition: all 400ms ease;
-  content: attr(data-label-on);
-}
-
-.ATC-neon .ATC-checkbox {
-  display: none;
-}
-
-.ATC-neon .ATC-checkbox:checked+.ATC-btn:after {
-  animation: neon 1.66s ease-in-out infinite alternate;
-  animation-delay: 50ms;
-  color: #f1f1f1;
 }
