@@ -3,6 +3,10 @@ body {
   background-color: #292929;
   border: none;
 }
+p{
+  user-select: none;
+  display: inline-block;
+}
 
 .ATC-header {
   background: #222222;
