@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $(".ATC-select").click(function () {
+    $(document).on("click",".ATC-select", function () {
         activateATC($(this).text());
     });
 
@@ -18,7 +18,7 @@ $(document).ready(function () {
 })
 
 function activateATC(ATCname) {
-    var $template = $("#defaultATC").clone();
+    var $template = $("#defaultToggleATC").clone();
     $template.children(".ATC-toggle")
         .text(ATCname)
         .appendTo("#ATC-active-list")
@@ -37,6 +37,10 @@ function createATC() {
             } else {
                 localStorage.setItem(newATC,newATC);
                 switchModal("#ATCcreateModal","#ATCmodal");
+                    $("#defaultAddATC").clone()
+                    .removeAttr("id")
+                    .text(localStorage[newATC])
+                    .appendTo("#ATC-list");
                 alert("ADDED " + localStorage[newATC] + " TO LIST");
             }
         } else {
