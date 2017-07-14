@@ -28,7 +28,7 @@ function activateATC(ATCname) {
 
 function createATC() {
     switchModal("#ATCmodal","#ATCcreateModal");
-    $("#newATC-btn").click(function () {
+    $("#newATC-btn").off('click').click(function () {
         var newATC = document.getElementById("newATC-text").value;
         document.getElementById("newATC-text").value = "";
         if( /^[a-zA-Z ]+$/.test(newATC)) {
