@@ -28,6 +28,16 @@ function activateATC(ATCname) {
 
 function createATC() {
     switchModal("#ATCmodal","#ATCcreateModal");
+    $("#newATC-btn").click(function () {
+        var newATC = document.getElementById("newATC-text").value;
+        document.getElementById("newATC-text").value = "";
+        if( /^[a-zA-Z ]+$/.test(newATC)) {
+            switchModal("#ATCcreateModal","#ATCmodal");
+            alert(newATC); 
+        } else {
+            alert("Please input a name\n(Names may only contain letters)");
+        }
+    });
 }
 
 function deleteATC() {
