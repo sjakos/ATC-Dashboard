@@ -29,11 +29,16 @@ function activateATC(ATCname) {
 function createATC() {
     switchModal("#ATCmodal","#ATCcreateModal");
     $("#newATC-btn").off('click').click(function () {
-        var newATC = document.getElementById("newATC-text").value;
+        var newATC = document.getElementById("newATC-text").value.trim().toUpperCase();
         document.getElementById("newATC-text").value = "";
         if( /^[a-zA-Z ]+$/.test(newATC)) {
-            switchModal("#ATCcreateModal","#ATCmodal");
-            alert(newATC); 
+            if (localStorage[newATC]) {
+                alert("Name is already saved\nPlease enter a unique name");
+            } else {
+                localStorage.setItem(newATC,newATC);
+                switchModal("#ATCcreateModal","#ATCmodal");
+                alert("ADDED " + localStorage[newATC] + " TO LIST");
+            }
         } else {
             alert("Please input a name\n(Names may only contain letters)");
         }
