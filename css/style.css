@@ -40,8 +40,6 @@ body {
   display: inline-block;
 } 
 
-.ATC-toggle input {display: none;}
-
 @keyframes neon {
   0% {
     text-shadow: 0 0 .05px #fff, 0 0 .15px #fff, 0 0 .35px #fff, 0 0 3px #FF9900, 0 0 4px #FF9900, 0 0 5px #FF9900, 0 0 7px #FF9900;
