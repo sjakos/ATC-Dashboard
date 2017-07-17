@@ -2,11 +2,23 @@ $(document).ready(function () {
     loadATCfromLocalStorage();
 
     $(document).on("click", ".ATC-select", function () {
-        activateATC($(this).text());
+        if ($(this).hasClass("ATC-delete")) {
+            localStorage.removeItem($(this).text());
+            $(this).remove();
+            resetATCmodal();
+        } else {
+            activateATC($(this).text());
+        }
     });
 
     $(document).on("click", ".ATC-toggle", function () {
         $(this).remove();
+    });
+
+    $("#ATCmodal").on("hidden.bs.modal", function () {
+        if ($("#ATCmodal p.ATC-select").hasClass("ATC-delete")) {
+            resetATCmodal();
+        }
     });
 
     $("#deleteATC").click(function () {
@@ -44,12 +56,18 @@ function createATC() {
 }
 
 function deleteATC() {
-    switchModal("#ATCmodal", "#ATCdeleteModal");
+    $("#ATCmodal h4.modal-title").text("Delete ATC");
+    $("#ATCmodal p.ATC-select").addClass("ATC-delete");
 }
 
 function switchModal(hideModalID, showModalID) {
     $(hideModalID).modal('hide');
     $(showModalID).modal('show');
+}
+
+function resetATCmodal() {
+    $("#ATCmodal h4.modal-title").text("Active ATC");
+    $("#ATCmodal p.ATC-select").removeClass("ATC-delete");
 }
 
 function loadATCfromLocalStorage() {

@@ -44,9 +44,6 @@ p{
 }
 
 .ATC-delete {
-  cursor: pointer;
-  user-select: none;
-  display: inline-block;
   text-shadow: 0 0 .5px #fff, 0 0 .9px red, 0 0 2px red, 0 0 2.75px red;
 }
 
