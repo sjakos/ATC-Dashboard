@@ -19,11 +19,7 @@ $(document).ready(function () {
 })
 
 function activateATC(ATCname) {
-    var $template = $("#defaultToggleATC").clone();
-    $template.children(".ATC-toggle")
-        .text(ATCname)
-        .appendTo("#ATC-active-list")
-        .addClass("col text-center");
+    addATCtoSection(ATCname, "#ATC-active-list", "ATC-toggle")
     $("#ATCmodal").modal('hide');
 }
 
@@ -39,7 +35,7 @@ function createATC() {
             } else {
                 localStorage.setItem(newATC, newATC);
                 switchModal("#ATCcreateModal", "#ATCmodal");
-                addATCtoSection(localStorage[newATC], "#ATC-list");
+                addATCtoSection(localStorage[newATC], "#ATC-list", "ATC-select");
             }
         } else {
             alert("Please input a name\n(Names may only contain letters)");
@@ -60,13 +56,13 @@ function loadATCfromLocalStorage() {
     for (var ATC in localStorage) {
         if (localStorage.hasOwnProperty(ATC)) {
             var name = localStorage[ATC];
-            addATCtoSection(name, "#ATC-list");
+            addATCtoSection(name, "#ATC-list", "ATC-select");
         }
     }
 }
 
-function addATCtoSection(name, section) {
-    $atc = $("<p>", {"class":"col text-center"});
+function addATCtoSection(name, section, optClass = "") {
+    $atc = $("<p>", {"class":"col text-center " + optClass});
     $atc.text(name);
     $(section).append($atc);
 }
