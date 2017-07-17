@@ -1,10 +1,11 @@
 $(document).ready(function () {
+    loadATCfromLocalStorage();
 
-    $(document).on("click",".ATC-select", function () {
+    $(document).on("click", ".ATC-select", function () {
         activateATC($(this).text());
     });
 
-    $(document).on("click", ".ATC-toggle", function() {
+    $(document).on("click", ".ATC-toggle", function () {
         $(this).remove();
     });
 
@@ -27,21 +28,18 @@ function activateATC(ATCname) {
 }
 
 function createATC() {
-    switchModal("#ATCmodal","#ATCcreateModal");
+    switchModal("#ATCmodal", "#ATCcreateModal");
     $("#newATC-btn").off('click').click(function () {
-        var newATC = document.getElementById("newATC-text").value.trim().toUpperCase();
+        var newATC = document.getElementById("newATC-text")
+                    .value.trim().toUpperCase();
         document.getElementById("newATC-text").value = "";
-        if( /^[a-zA-Z ]+$/.test(newATC)) {
+        if (/^[a-zA-Z ]+$/.test(newATC)) {
             if (localStorage[newATC]) {
                 alert("Name is already saved\nPlease enter a unique name");
             } else {
-                localStorage.setItem(newATC,newATC);
-                switchModal("#ATCcreateModal","#ATCmodal");
-                    $("#defaultAddATC").clone()
-                    .removeAttr("id")
-                    .text(localStorage[newATC])
-                    .appendTo("#ATC-list");
-                alert("ADDED " + localStorage[newATC] + " TO LIST");
+                localStorage.setItem(newATC, newATC);
+                switchModal("#ATCcreateModal", "#ATCmodal");
+                addATCtoSelection(localStorage[newATC]);
             }
         } else {
             alert("Please input a name\n(Names may only contain letters)");
@@ -50,10 +48,26 @@ function createATC() {
 }
 
 function deleteATC() {
-    switchModal("#ATCmodal","#ATCdeleteModal");
+    switchModal("#ATCmodal", "#ATCdeleteModal");
 }
 
-function switchModal(hideModalID,showModalID) {
-        $(hideModalID).modal('hide');
-        $(showModalID).modal('show');
+function switchModal(hideModalID, showModalID) {
+    $(hideModalID).modal('hide');
+    $(showModalID).modal('show');
+}
+
+function loadATCfromLocalStorage() {
+    for (var ATC in localStorage) {
+        if (localStorage.hasOwnProperty(ATC)) {
+            var name = localStorage[ATC];
+            addATCtoSelection(name);
+        }
+    }
+}
+
+function addATCtoSelection(name) {
+    $("#defaultAddATC").clone()
+    .removeAttr("id")
+    .text(name)
+    .appendTo("#ATC-list");
 }
