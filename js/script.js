@@ -39,7 +39,7 @@ function createATC() {
             } else {
                 localStorage.setItem(newATC, newATC);
                 switchModal("#ATCcreateModal", "#ATCmodal");
-                addATCtoSelection(localStorage[newATC]);
+                addATCtoSection(localStorage[newATC], "#ATC-list");
             }
         } else {
             alert("Please input a name\n(Names may only contain letters)");
@@ -60,14 +60,13 @@ function loadATCfromLocalStorage() {
     for (var ATC in localStorage) {
         if (localStorage.hasOwnProperty(ATC)) {
             var name = localStorage[ATC];
-            addATCtoSelection(name);
+            addATCtoSection(name, "#ATC-list");
         }
     }
 }
 
-function addATCtoSelection(name) {
-    $("#defaultAddATC").clone()
-    .removeAttr("id")
-    .text(name)
-    .appendTo("#ATC-list");
+function addATCtoSection(name, section) {
+    $atc = $("<p>", {"class":"col text-center"});
+    $atc.text(name);
+    $(section).append($atc);
 }
