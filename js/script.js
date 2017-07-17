@@ -79,7 +79,7 @@ function loadATCfromLocalStorage() {
     }
 }
 
-function addATCtoSection(name, section, optClass = "") {
+function addATCtoSection(name, section, optClass) {
     $atc = $("<p>", {"class":"col text-center " + optClass});
     $atc.text(name);
     $(section).append($atc);
